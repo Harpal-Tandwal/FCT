@@ -1,0 +1,97 @@
+﻿<UserControl x:Class="Navbar.View.ModelSettingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Navbar.View"     
+             xmlns:model="clr-namespace:Navbar.Model"
+            
+             xmlns:cc="clr-namespace:Navbar.View.CustomControles" xmlns:viewmodel="clr-namespace:Navbar.ViewModel"
+             d:DataContext="{d:DesignInstance Type=model:BaseClass}"
+             mc:Ignorable="d" 
+             
+             d:DesignHeight="750" d:DesignWidth="1600">
+    <Grid Background="Blue" Margin="0,0,0,-31">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition  Height="3*"/>
+
+            <RowDefinition  Height="3*"/>
+            <RowDefinition  Height="3*"/>
+            <RowDefinition  Height="3*"/>
+            <RowDefinition  Height="3*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+             <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <ComboBox  Grid.Row="0" Grid.Column="0" Height="35"  Text="Select Model"/>
+        <TextBox  Grid.Row="0" Grid.Column="1" x:Name="tbx_model_name"  Tag="Enter Model Name" Style="{StaticResource PlaceholderTextBoxStyle}" Height="35" FontSize="24" Margin="10 2"/>
+        <Button Grid.Row="0" Grid.Column="2" Height="35"  Content="Save" />
+        <StackPanel Grid.Row="1">
+            <Label Content="Barcode1"  Style="{StaticResource lbl_normal}"/>
+            <TextBox x:Name="tbx_barcode1"  Tag="Enter Barcode 1" Style="{StaticResource PlaceholderTextBoxStyle}" Height="35" FontSize="22" Margin="10 2"/>
+            <TextBox x:Name="tbx_barcode_str_len_1" Tag="Validation Length" Style="{StaticResource PlaceholderTextBoxStyle}" Height="35" FontSize="22" Margin="10 2"/>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <Label Content="Barcode2"  Style="{StaticResource lbl_normal}"/>
+            <TextBox x:Name="tbx_barcode2"  Tag="Enter Barcode 2" Style="{StaticResource PlaceholderTextBoxStyle}" Height="35" FontSize="22" Margin="10 2"/>
+            <TextBox x:Name="tbx_barcode_str_len_2" Tag="Validation Length" Style="{StaticResource PlaceholderTextBoxStyle}" Height="35" FontSize="22" Margin="10 2"/>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="1" Grid.Column="2">
+            <Label Content="Barcode3"  Style="{StaticResource lbl_normal}"/>
+            <TextBox x:Name="tbx_barcode3"  Tag="Enter Barcode 3" Style="{StaticResource PlaceholderTextBoxStyle}" Height="35" FontSize="22" Margin="10 2"/>
+            <TextBox x:Name="tbx_barcode_str_len_3" Tag="Validation Length" Style="{StaticResource PlaceholderTextBoxStyle}" Height="35" FontSize="22" Margin="10 2"/>
+        </StackPanel>
+        
+        <StackPanel  Grid.Row="1" Grid.Column="3">
+            <Label Content="Barcode4"  Style="{StaticResource lbl_normal}"/>
+            <TextBox x:Name="tbx_barcode4"  Tag="Enter Barcode 4" Style="{StaticResource PlaceholderTextBoxStyle}" Height="35" FontSize="22" Margin="10 2"/>
+            <TextBox x:Name="tbx_barcode_str_len_4" Tag="Validation Length" Style="{StaticResource PlaceholderTextBoxStyle}" Height="35" FontSize="22" Margin="10 2"/>
+            
+
+        </StackPanel>
+        <Border BorderBrush="red" BorderThickness="2" Grid.Row="2" Grid.Column="0" Grid.RowSpan="3" Grid.ColumnSpan="3">
+
+            <Grid    ShowGridLines="True" Background="#d63031">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition  Width="1*"/>
+                    <ColumnDefinition  Width="1*"/>
+                    <ColumnDefinition  Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Row="0" Grid.Column="0">
+                    <Label Content=" Lamp 1 name"  Style="{StaticResource lbl_normal}" HorizontalAlignment="Stretch"/>
+                    <TextBox   Tag="Enter Lamp 1 Name" Style="{StaticResource PlaceholderTextBoxStyle}" Height="35" FontSize="22" Margin="10 2"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Grid.Column="0">
+                    <Label Content=" Lamp 2 name"  Style="{StaticResource lbl_normal}"/>
+                    <TextBox   Tag="Enter Lamp 2 Name" Style="{StaticResource PlaceholderTextBoxStyle}" Height="35" FontSize="22" Margin="10 2"/>
+                </StackPanel>
+                <cc:TestInput  Grid.Row="0" Grid.Column="1" Margin="2 2" Vmin="12"   Vmax="{Binding  lamp1.voltage.min_voltage[0], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Voffset="0" Vtest="9" Cmin="1.4" Cmax="1.6" Ctest="1.5" Coffset="0" LampOn="{Binding Test}"/>
+                <cc:TestInput Grid.Row="0" Grid.Column="2" Margin="2 2" Vmin="155" Vmax="15"  Voffset="0" Vtest="9" Cmin="1.4" Cmax="1.6" Ctest="1.5" Coffset="0" LampOn="{Binding Test}"/>
+                <cc:TestInput Grid.Row="0" Grid.Column="3" Margin="2 2" Vmin="155" Vmax="15"  Voffset="0" Vtest="9" Cmin="1.4" Cmax="1.6" Ctest="1.5" Coffset="0" LampOn="{Binding Test}"/>
+
+            </Grid>
+
+            
+
+        </Border>
+        <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="2" Background="#ff9f1a">
+            <Label Content=" LDR implementation area" FontSize="50"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
