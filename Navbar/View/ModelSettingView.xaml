@@ -6,8 +6,9 @@
              xmlns:local="clr-namespace:Navbar.View"     
              xmlns:model="clr-namespace:Navbar.Model"
             
-             xmlns:cc="clr-namespace:Navbar.View.CustomControles" xmlns:viewmodel="clr-namespace:Navbar.ViewModel"
-             d:DataContext="{d:DesignInstance Type=model:BaseClass}"
+             xmlns:cc="clr-namespace:Navbar.View.CustomControles" 
+             xmlns:viewmodel="clr-namespace:Navbar.ViewModel"
+             d:DataContext="{d:DesignInstance Type=viewmodel:BaseClass}"
              mc:Ignorable="d" 
              
              d:DesignHeight="750" d:DesignWidth="1600">
@@ -30,30 +31,30 @@
         </Grid.ColumnDefinitions>
 
         <ComboBox  Grid.Row="0" Grid.Column="0" Height="35"  Text="Select Model"/>
-        <TextBox  Grid.Row="0" Grid.Column="1" x:Name="tbx_model_name"  Tag="Enter Model Name" Style="{StaticResource PlaceholderTextBoxStyle}" Height="35" FontSize="24" Margin="10 2"/>
-        <Button Grid.Row="0" Grid.Column="2" Height="35"  Content="Save" />
+        <TextBox  Grid.Row="0" Grid.Column="1" x:Name="tbx_model_name"  Tag="Enter Model Name" Text="{Binding testingmodel.model_name}" Style="{StaticResource PlaceholderTextBoxStyle}" Height="35" FontSize="24" Margin="10 2"/>
+        <Button Grid.Row="0" Grid.Column="2" Height="35"  Content="Save" Command="{Binding SaveProgram}" />
         <StackPanel Grid.Row="1">
             <Label Content="Barcode1"  Style="{StaticResource lbl_normal}"/>
-            <TextBox x:Name="tbx_barcode1"  Tag="Enter Barcode 1" Style="{StaticResource PlaceholderTextBoxStyle}" Height="35" FontSize="22" Margin="10 2"/>
-            <TextBox x:Name="tbx_barcode_str_len_1" Tag="Validation Length" Style="{StaticResource PlaceholderTextBoxStyle}" Height="35" FontSize="22" Margin="10 2"/>
+            <TextBox x:Name="tbx_barcode1"  Tag="Enter Barcode 1" Text="{Binding Barcode[0], Mode=TwoWay,UpdateSourceTrigger=LostFocus}" Style="{StaticResource PlaceholderTextBoxStyle}" Height="35" FontSize="22" Margin="10 2"/>
+            <TextBox x:Name="tbx_barcode_str_len_1" Tag="Validation Length" Text="{Binding validation[0]}" Style="{StaticResource PlaceholderTextBoxStyle}" Height="35" FontSize="22" Margin="10 2"/>
         </StackPanel>
         
         <StackPanel Grid.Row="1" Grid.Column="1">
             <Label Content="Barcode2"  Style="{StaticResource lbl_normal}"/>
-            <TextBox x:Name="tbx_barcode2"  Tag="Enter Barcode 2" Style="{StaticResource PlaceholderTextBoxStyle}" Height="35" FontSize="22" Margin="10 2"/>
-            <TextBox x:Name="tbx_barcode_str_len_2" Tag="Validation Length" Style="{StaticResource PlaceholderTextBoxStyle}" Height="35" FontSize="22" Margin="10 2"/>
+            <TextBox x:Name="tbx_barcode2"  Tag="Enter Barcode 2" Text="{Binding Barcode[1]}" Style="{StaticResource PlaceholderTextBoxStyle}" Height="35" FontSize="22" Margin="10 2"/>
+            <TextBox x:Name="tbx_barcode_str_len_2" Tag="Validation Length" Text="{Binding validation[1]}" Style="{StaticResource PlaceholderTextBoxStyle}" Height="35" FontSize="22" Margin="10 2"/>
         </StackPanel>
         
         <StackPanel Grid.Row="1" Grid.Column="2">
             <Label Content="Barcode3"  Style="{StaticResource lbl_normal}"/>
-            <TextBox x:Name="tbx_barcode3"  Tag="Enter Barcode 3" Style="{StaticResource PlaceholderTextBoxStyle}" Height="35" FontSize="22" Margin="10 2"/>
-            <TextBox x:Name="tbx_barcode_str_len_3" Tag="Validation Length" Style="{StaticResource PlaceholderTextBoxStyle}" Height="35" FontSize="22" Margin="10 2"/>
+            <TextBox x:Name="tbx_barcode3"  Tag="Enter Barcode 3" Text="{Binding Barcode[2]}" Style="{StaticResource PlaceholderTextBoxStyle}" Height="35" FontSize="22" Margin="10 2"/>
+            <TextBox x:Name="tbx_barcode_str_len_3" Tag="Validation Length" Text="{Binding validation[2]}" Style="{StaticResource PlaceholderTextBoxStyle}" Height="35" FontSize="22" Margin="10 2"/>
         </StackPanel>
         
         <StackPanel  Grid.Row="1" Grid.Column="3">
             <Label Content="Barcode4"  Style="{StaticResource lbl_normal}"/>
-            <TextBox x:Name="tbx_barcode4"  Tag="Enter Barcode 4" Style="{StaticResource PlaceholderTextBoxStyle}" Height="35" FontSize="22" Margin="10 2"/>
-            <TextBox x:Name="tbx_barcode_str_len_4" Tag="Validation Length" Style="{StaticResource PlaceholderTextBoxStyle}" Height="35" FontSize="22" Margin="10 2"/>
+            <TextBox x:Name="tbx_barcode4"  Tag="Enter Barcode 4" Text="{Binding Barcode[3]}" Style="{StaticResource PlaceholderTextBoxStyle}" Height="35" FontSize="22" Margin="10 2"/>
+            <TextBox x:Name="tbx_barcode_str_len_4" Tag="Validation Length" Text="{Binding validation[3]}" Style="{StaticResource PlaceholderTextBoxStyle}" Height="35" FontSize="22" Margin="10 2"/>
             
 
         </StackPanel>
@@ -75,15 +76,21 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Row="0" Grid.Column="0">
                     <Label Content=" Lamp 1 name"  Style="{StaticResource lbl_normal}" HorizontalAlignment="Stretch"/>
-                    <TextBox   Tag="Enter Lamp 1 Name" Style="{StaticResource PlaceholderTextBoxStyle}" Height="35" FontSize="22" Margin="10 2"/>
+                    <TextBox   Tag="Enter Lamp 1 Name" Style="{StaticResource PlaceholderTextBoxStyle}" Height="35" FontSize="22" Margin="10 2" Text="{Binding lamp1.name, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
                 </StackPanel>
                 <StackPanel Grid.Row="1" Grid.Column="0">
                     <Label Content=" Lamp 2 name"  Style="{StaticResource lbl_normal}"/>
-                    <TextBox   Tag="Enter Lamp 2 Name" Style="{StaticResource PlaceholderTextBoxStyle}" Height="35" FontSize="22" Margin="10 2"/>
+                    <TextBox   Tag="Enter Lamp 2 Name" Style="{StaticResource PlaceholderTextBoxStyle}" Height="35" FontSize="22" Margin="10 2" Text="{Binding lamp2.name, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
                 </StackPanel>
-                <cc:TestInput  Grid.Row="0" Grid.Column="1" Margin="2 2" Vmin="12"   Vmax="{Binding  lamp1.voltage.min_voltage[0], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Voffset="0" Vtest="9" Cmin="1.4" Cmax="1.6" Ctest="1.5" Coffset="0" LampOn="{Binding Test}"/>
-                <cc:TestInput Grid.Row="0" Grid.Column="2" Margin="2 2" Vmin="155" Vmax="15"  Voffset="0" Vtest="9" Cmin="1.4" Cmax="1.6" Ctest="1.5" Coffset="0" LampOn="{Binding Test}"/>
-                <cc:TestInput Grid.Row="0" Grid.Column="3" Margin="2 2" Vmin="155" Vmax="15"  Voffset="0" Vtest="9" Cmin="1.4" Cmax="1.6" Ctest="1.5" Coffset="0" LampOn="{Binding Test}"/>
+               <!--Lamp 1-->
+                <cc:TestInput  Grid.Row="0" Grid.Column="1" Margin="2 2" Vmin="{Binding lamp1.min_voltage[0], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Vmax="{Binding lamp1.max_voltage[0], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Voffset="{Binding lamp1.offset_voltage[0], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Vtest="{Binding lamp1.test_voltage[0], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Cmin="{Binding lamp1.min_current[0], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Cmax="{Binding lamp1.max_current[0], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Ctest="{Binding lamp1.test_current[0], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Coffset="{Binding lamp1.offset_current[0], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" LampOn="{Binding Test}"/>
+                <cc:TestInput  Grid.Row="0" Grid.Column="2" Margin="2 2" Vmin="{Binding lamp1.min_voltage[1], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Vmax="{Binding lamp1.max_voltage[1], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Voffset="{Binding lamp1.offset_voltage[1], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Vtest="{Binding lamp1.test_voltage[1], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Cmin="{Binding lamp1.min_current[1], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Cmax="{Binding lamp1.max_current[1], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Ctest="{Binding lamp1.test_current[1], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Coffset="{Binding lamp1.offset_current[1], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" LampOn="{Binding Test}"/>
+                <cc:TestInput  Grid.Row="0" Grid.Column="3" Margin="2 2" Vmin="{Binding lamp1.min_voltage[2], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Vmax="{Binding lamp1.max_voltage[2], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Voffset="{Binding lamp1.offset_voltage[2], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Vtest="{Binding lamp1.test_voltage[2], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Cmin="{Binding lamp1.min_current[2], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Cmax="{Binding lamp1.max_current[2], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Ctest="{Binding lamp1.test_current[2], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Coffset="{Binding lamp1.offset_current[2], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" LampOn="{Binding Test}"/>
+
+                <!--Lamp2-->
+                <cc:TestInput  Grid.Row="1" Grid.Column="1" Margin="2 2" Vmin="{Binding lamp2.min_voltage[0], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Vmax="{Binding lamp2.max_voltage[0], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Voffset="{Binding lamp2.offset_voltage[0], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Vtest="{Binding lamp2.test_voltage[0], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Cmin="{Binding lamp2.min_current[0], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Cmax="{Binding lamp2.max_current[0], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Ctest="{Binding lamp2.test_current[0], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Coffset="{Binding lamp2.offset_current[0], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" LampOn="{Binding Test}"/>
+                <cc:TestInput  Grid.Row="1" Grid.Column="2" Margin="2 2" Vmin="{Binding lamp2.min_voltage[1], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Vmax="{Binding lamp2.max_voltage[1], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Voffset="{Binding lamp2.offset_voltage[1], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Vtest="{Binding lamp2.test_voltage[1], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Cmin="{Binding lamp2.min_current[1], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Cmax="{Binding lamp2.max_current[1], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Ctest="{Binding lamp2.test_current[1], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Coffset="{Binding lamp2.offset_current[1], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" LampOn="{Binding Test}"/>
+                <cc:TestInput  Grid.Row="1" Grid.Column="3" Margin="2 2" Vmin="{Binding lamp2.min_voltage[2], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Vmax="{Binding lamp2.max_voltage[2], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Voffset="{Binding lamp2.offset_voltage[2], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Vtest="{Binding lamp2.test_voltage[2], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Cmin="{Binding lamp2.min_current[2], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Cmax="{Binding lamp2.max_current[2], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Ctest="{Binding lamp2.test_current[2], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Coffset="{Binding lamp2.offset_current[2], Mode=TwoWay, UpdateSourceTrigger=LostFocus}" LampOn="{Binding Test}"/>
 
             </Grid>
 

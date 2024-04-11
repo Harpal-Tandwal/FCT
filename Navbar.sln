@@ -5,6 +5,8 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Navbar", "Navbar\Navbar.csproj", "{0FB9315F-D2B0-4BE5-B3EA-22E561AE583E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ARRAYbINDING", "..\ARRAYbINDING\ARRAYbINDING\ARRAYbINDING.csproj", "{2CB1C945-4D2D-4D44-967A-68597BD6057D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{0FB9315F-D2B0-4BE5-B3EA-22E561AE583E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FB9315F-D2B0-4BE5-B3EA-22E561AE583E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FB9315F-D2B0-4BE5-B3EA-22E561AE583E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CB1C945-4D2D-4D44-967A-68597BD6057D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CB1C945-4D2D-4D44-967A-68597BD6057D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CB1C945-4D2D-4D44-967A-68597BD6057D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CB1C945-4D2D-4D44-967A-68597BD6057D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

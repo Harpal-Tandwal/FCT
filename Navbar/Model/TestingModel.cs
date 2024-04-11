@@ -1,4 +1,5 @@
 ﻿using Navbar.ViewModel;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,125 +7,220 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Navbar.Model
 {
-    public class TestingModel
+    public class TestingModel:BaseClass
     {
         public string model_name { get; set; }
-        public string[] barcodes;
-        public Lamps[] lamps;
-
-
-        public TestingModel() 
+        public string[] barcode;
+        public int[] string_validation_length;
+          public Lamps[] lamps;
+   
+        public TestingModel()
         {
             model_name = string.Empty;
-            barcodes = new string[4];
-            lamps = new Lamps[5];
-        }   
+            barcode = new string[4];
+            string_validation_length= new int[4];
+          lamps = new Lamps[5];
+
+     
+        }
 
     }
-
-    public class Lamps
+        public class Lamps:BaseClass
     {
-        public string lamp_name { get; set; }
-        public Voltage voltage { get; set; }
+        //*********************Collection Declaration
+        private string _name { get; set; }
+        private ObservableCollection<float> _test_voltage;
+        private ObservableCollection<float> _min_voltage;
+        private ObservableCollection<float> _max_voltage;
+        private ObservableCollection<float> _offset_voltage;
+        private ObservableCollection<float> _test_current;
+        private ObservableCollection<float> _min_current;
+        private ObservableCollection<float> _max_current;
+        private ObservableCollection<float> _offset_current;
 
-        public Current current { get; set; }
+
+
+        //public float[] min_voltage { get; set; }
+        //public float[] max_voltage { get; set; }
+        //public float[] offset_voltage { get; set; }
+
+        //public float[] test_current { get; set; }
+        //public float[] min_current { get; set; }
+        //public float[] max_current { get; set; }
+        //public float[] offset_current { get; set; }
+
+
+        //********************Collection Definition**************
+
+        public string name
+        {
+            get { return _name; }
+            set
+            {
+                if (_name != value)
+                {
+                    _name = value;
+                    OnPropertyChanged(nameof(name));
+                }
+            }
+        }
+
+
+        //*************************     Test voltage definition
+
+        public ObservableCollection<float> test_voltage
+        {
+            get { return _test_voltage; }
+            set
+            {
+                if (_test_voltage != value)
+                {
+                    _test_voltage = value;
+                    OnPropertyChanged(nameof(test_voltage));
+                }
+            }
+        }
+
+
+        public ObservableCollection<float> min_voltage
+        {
+            get { return _min_voltage; }
+            set
+            {
+                if (_min_voltage != value)
+                {
+                    _min_voltage = value;
+                    OnPropertyChanged(nameof(min_voltage));
+                }
+            }
+        }
+
+        public ObservableCollection<float> max_voltage
+        {
+            get { return _max_voltage; }
+            set
+            {
+                if (_max_voltage != value)
+                {
+                    _max_voltage = value;
+                    OnPropertyChanged(nameof(max_voltage));
+                }
+            }
+        }
+
+        public ObservableCollection<float> offset_voltage
+        {
+            get { return _offset_voltage; }
+            set
+            {
+                if (_offset_voltage != value)
+                {
+                    _offset_voltage = value;
+                    OnPropertyChanged(nameof(_offset_voltage));
+                }
+            }
+        }
+        public ObservableCollection<float> test_current
+        {
+            get { return _test_current; }
+            set
+            {
+                if (_test_current != value)
+                {
+                    _test_current = value;
+                    OnPropertyChanged(nameof(test_current));
+                }
+            }
+        }
+
+
+        public ObservableCollection<float> min_current
+        {
+            get { return _min_current; }
+            set
+            {
+                if (_min_current != value)
+                {
+                    _min_current = value;
+                    OnPropertyChanged(nameof(min_current));
+                }
+            }
+        }
+
+        public ObservableCollection<float> max_current
+        {
+            get { return _max_current; }
+            set
+            {
+                if (_max_current != value)
+                {
+                    _max_current = value;
+                    OnPropertyChanged(nameof(max_current));
+                }
+            }
+        }
+
+        public ObservableCollection<float> offset_current
+        {
+            get { return _offset_current; }
+            set
+            {
+                if (_offset_current != value)
+                {
+                    _offset_current = value;
+                    OnPropertyChanged(nameof(offset_current));
+                }
+            }
+        }
+
+        void copyobj(ObservableCollection<float> original, ObservableCollection<float> other)
+        {
+            original.Clear();
+            int i = 0;
+            foreach(float value in other)
+            {
+                if (i++ <= 2) continue;
+                original.Add(value);
+            }
+        }
+        public void DeepCopyFrom(Lamps other)
+        {
+            // Deep copy the name property
+            this.name = other.name;
+
+            copyobj(this.test_voltage, other.test_voltage);
+            copyobj(this.offset_voltage, other.offset_voltage);
+            copyobj(this.max_voltage, other.max_voltage);
+            copyobj(this.min_voltage, other.min_voltage);
+
+            copyobj(this.test_current, other.test_current);
+            copyobj(this.min_current, other.min_current);
+            copyobj(this.max_current, other.max_current);
+            copyobj(this.offset_current, other.offset_current);
+
+
+        }
 
         public Lamps()
-        {   voltage = new Voltage();
-            current = new Current();
-            lamp_name= string.Empty;
+        {
+             offset_voltage = new ObservableCollection<float>(new float[3]);
+             max_voltage = new ObservableCollection<float>(new float[3]);
+             min_voltage = new ObservableCollection<float>(new float[3]);
+             test_voltage = new ObservableCollection<float>(new float[3]);
+
+
+
+             test_current = new ObservableCollection<float>(new float[3]);
+             min_current = new ObservableCollection<float>(new float[3]);
+             max_current = new ObservableCollection<float>(new float[3]);
+             offset_current = new ObservableCollection<float>(new float[3]);
 
         }
 
-
-
-    }
-    public class Voltage
-    {
-        public float[] test_voltage { get; set; }
-        public float[] min_voltage { get; set; }
-        public string[] max_voltage { get; set; }
-        public float[] offset_voltage { get; set; }
-        public Voltage()
-        {
-            offset_voltage = new float[3];
-            max_voltage = new string[3];
-            min_voltage = new float[3];
-            test_voltage = new float[3];
-            }
-
-    }
-    public class Current
-    {
-        public float[] test_current = new float[3];
-        public float[] min_current = new float[3];
-        public float[] max_current = new float[3];
-        public float[] offset_current = new float[3];
-
-    }
-
-
-    public class VoltageNew : BaseClass
-    {
-        private ObservableCollection<string> minVoltage;
-        private ObservableCollection<string> maxVoltage;
-        private ObservableCollection<string> testVoltage;
-        private ObservableCollection<string> offsetVoltage;
-
-        public ObservableCollection<string> MinVoltage
-        {
-            get { return minVoltage; }
-            set
-            {
-                if (minVoltage != value)
-                {
-                    minVoltage = value;
-                    OnPropertyChanged(nameof(MinVoltage));
-                }
-            }
-        }
-
-        public ObservableCollection<string> MaxVoltage
-        {
-            get { return maxVoltage; }
-            set
-            {
-                if (maxVoltage != value)
-                {
-                    maxVoltage = value;
-                    OnPropertyChanged(nameof(MaxVoltage));
-                }
-            }
-        }
-
-        public ObservableCollection<string> TestVoltage
-        {
-            get { return testVoltage; }
-            set
-            {
-                if (testVoltage != value)
-                {
-                    testVoltage = value;
-                    OnPropertyChanged(nameof(TestVoltage));
-                }
-            }
-        }
-
-        public ObservableCollection<string> OffsetVoltage
-        {
-            get { return offsetVoltage; }
-            set
-            {
-                if (offsetVoltage != value)
-                {
-                    offsetVoltage = value;
-                    OnPropertyChanged(nameof(OffsetVoltage));
-                }
-            }
-        }
 
 
     }

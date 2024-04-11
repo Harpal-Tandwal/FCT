@@ -12,56 +12,83 @@ using System.Windows.Controls;
 using Navbar.Commands;
 using System.Security.Policy;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
+using static System.Net.Mime.MediaTypeNames;
 namespace Navbar.ViewModel
 {
-    public class TestingViewModel
+    public class TestingViewModel:BaseClass
     {
+
+       
+ //*******************  Valiable devlarations Section 
+       
+
+
         public static string folderPath = @"C:\HpTech";
-        public  static string fileName = "ABRA.dat";
-        public string filePath = folderPath + "\\" + fileName;
-
-        public string[,] Param = new string[5,6];
-
-        public TestingViewModel()
-        {
-            LoadProgramParameters();
-        }
-    
-        TestingModel test = new TestingModel();
-        Voltage voltage = new Voltage();
-        Current current = new Current();
-        Lamps l = new Lamps();
-
+        public  static string ProgramName;
+        public string[] _Cbox_Pname_Items = new string[50];
+      
 
 
 
         public string tbl_online_details { get; set; } = "testing on";
         public string tbl_status { get; set; } = "PASS";
         public string tbl_message { get; set; } = "message for failure";
-        public string L1V1range { get; set; }
+        public string L1V1range { get; set; } = "raw data";
 
-        public RelayCommand<string> LoadTest => new RelayCommand<string>(execute => SaveProgram());
-      
-        //function declarations
-        public void LoadProgramNames(string path) {
+     
+
+
+
+        public TestingViewModel()
+        {
+            LoadProgramNames(folderPath);
+
+            testingmodel = new TestingModel();
+            lamp1= new Lamps();
+
+            //lamp1= new Lamps();
+            //lamp1 = testingmodel.lamps[1];
+            //lamp1 = testingmodel.lamps[2];
+            //lamp1 = testingmodel.lamps[3];
+            //lamp1 = testingmodel.lamps[4];
+
+
+        }
+
+
+
+
+
+        //********************* PROGRAM NAME LOADING IN  COMBOBOX ************************************************************************
+
+        public string[] Cbox_Pname_Items
+        {
+            get { return _Cbox_Pname_Items; }
+            set
+            {
+                if (_Cbox_Pname_Items != value)
+                {
+                    _Cbox_Pname_Items = value;
+                    OnPropertyChanged(nameof(Cbox_Pname_Items));
+                }
+            }
+        }
+
+       
+        public void LoadProgramNames(string path)
+        {
             try
             { 
                 if (Directory.Exists(path))
                 {
-                    string[] files = Directory.GetFiles(folderPath);
-                    string[]? items = new string[files.Length];
-
-                    // Output the file names
-                    Console.WriteLine($"Files in folder '{folderPath}':");
+                    string[] files = Directory.GetFiles(path);
                     int i = 0;
                     foreach (string file in files)
                     {
-                        items[i++] = Path.GetFileName(file);
+                        Cbox_Pname_Items[i++] = Path.GetFileNameWithoutExtension(file);
                     }
-                    foreach (string file in items)
-                    {
-                        Console.WriteLine(file);
-                    }
+                    
                 }
                 else
                 {
@@ -70,101 +97,141 @@ namespace Navbar.ViewModel
                 }
 
             }
-            catch(Exception ex) {
+            catch(Exception ex) 
+            {
                 MessageBox.Show($"{ex.Message}", "Error While Program Loading");
             }
-
-
-
-            ///*************************NEW PROGRAM*******************
-
         }
 
 
-        public void SaveProgram()
+
+        //***************************************    Loading program parameter name After selection on COMBOBOX   ***********************
+
+        public int online_voltage = 0;
+        public int online_current = 0;
+        private TestingModel _testingmodel;
+        public TestingModel testingmodel
         {
+            get { return _testingmodel; }
+            set
+            {
+                if (_testingmodel != value)
+                {
+                    _testingmodel = value;
+                    OnPropertyChanged(nameof(testingmodel));
+                }
+            }
+        }
+        public RelayCommand<object> LoadParameters => new(execute => LoadProgramParameters());
 
-            test.model_name = "ABRA";
-            test.barcodes = ["Z101TURN238952734", "Z101TURN238952734"];
+        private string _selectedItem;
+        public string SelectedItem
+        {
+            get { return _selectedItem; }
+            set
+            {
+                if (_selectedItem != value)
+                {
+                    _selectedItem = value;
+                    OnPropertyChanged(nameof(SelectedItem));
 
-            voltage.test_voltage = [9, 13, 16];
-            voltage.offset_voltage = [0, 0, 0];
-            voltage.min_voltage = [8.9f, 12.9f, 15.9f];
-            //voltage.max_voltage = [9.1f, 13.5f, 16.2f];
+                    // Execute command when item is selected
+                    LoadParameters.Execute(value);
+                }
+            }
+        }
+        private Lamps _lamps;
+        public Lamps lamp1
+        {
+            get { return _lamps; }
+            set
+            {
+                if (_lamps != value)
+                {
+                    _lamps = value;
+                    OnPropertyChanged(nameof(lamp1));
 
-            current.test_current = [1.3f, 2.4f, 3f];
-            current.min_current = [1, 2, 3,];
-            current.max_current = [2, 3, 4];
+                   
+                }
+            }
+        }
 
+        public void LoadProgramParameters()
+        {
+            string ext = ".dat";
+            string program_path= Path.Combine(folderPath, SelectedItem+ext);
 
-
-
-
-            //l.voltage= voltage;
-            //l.current= current;
-            test.lamps = [l];
-
-            string json = JsonConvert.SerializeObject(test, Formatting.Indented);
-            MessageBox.Show(json);
-      //*****************Write data to dat file**********************   
+            //MessageBox.Show($"{program_path} paramereter loading called");
             try
             {
-                if (Directory.Exists(folderPath))
-                {
+                string json = File.ReadAllText(program_path);
+               // MessageBox.Show(json);
+                testingmodel = JsonConvert.DeserializeObject<TestingModel>(json);
+                lamp1.DeepCopyFrom(testingmodel.lamps[0]);
+                string l1 = JsonConvert.SerializeObject(lamp1);
+                //lamp2 = testingmodel.lamps[1];
+                //lamp3 = testingmodel.lamps[2];
+                //lamp4 = testingmodel.lamps[3];
+                //lamp5 = testingmodel.lamps[4];
+                MessageBox.Show(l1);
+              
+             
 
-                    Console.WriteLine(filePath);
-                    File.WriteAllText(filePath, json);
-                }
-                else
-                {
-                    Directory.CreateDirectory(folderPath);
+                MessageBox.Show("tv 0"+lamp1.min_voltage[0].ToString());
 
-                    File.WriteAllText(filePath, json);
-                }
+
+                //MessageBox.Show("tv 0" + lamp1.test_voltage[1].ToString());
+
+                //MessageBox.Show("tv 0" + lamp1.test_voltage[2].ToString());
+
+                
+
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                MessageBox.Show(ex.Message);
             }
 
         }
 
-        //***************************************READ ALL PARAMETERS FROM DAT FILE***********************
-public void LoadProgramParameters()
+
+        //******************* Test Start ****************
+        public RelayCommand<object> TestStart => new(execute => TestingStart());
+
+        private void TestingStart()
         {
+            if (InitialConditions())
+            {
+                MessageBox.Show("testing start");
+            }
+            //lamp 1 testing
+            SetVoltage(lamp1.test_voltage[0]);
+          MessageBox.Show(  getVoltage().ToString() );
            
-
-
-            try
-            {
-                if (File.Exists(filePath))
-                {
-                    string json = File.ReadAllText(filePath);
-                    test = JsonConvert.DeserializeObject<TestingModel>(json);
-                    // Console.WriteLine(data.lamps[0].voltage.test_voltage[0]);
-                    //   L1V1range = $"{test.lamps[0].voltage.min_voltage[0]}V - {test.lamps[0].voltage.max_voltage[0]}V";
-
-                 for(int i =0; i<test.lamps.Length;i++)
-                    {
-                        
-                        
-                       
-                    }
-                }
-
-            }
-            catch (Exception ex)
-            {MessageBox.Show(ex.Message,$"Error While Loading {fileName} parameters ");
-            }
-
         }
 
 
+        //************* Instrument control Section **************
+        float Onlinevoltage;
+        bool InitialConditions()
+        {
 
+            return true;
+        }
+        float getVoltage()
+        {
+          
+            return Onlinevoltage;
+        }
+         void SetVoltage(float voltage)
+        {
+            Onlinevoltage = voltage;
+           
+        }
 
-
-        
     }
+
+
 
 
 }

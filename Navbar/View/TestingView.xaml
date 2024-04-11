@@ -28,7 +28,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <ComboBox Grid.Row="0" Grid.Column="0" Name="cb_models" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="35"/>
+        <ComboBox Grid.Row="0" Grid.Column="0" ItemsSource="{Binding Cbox_Pname_Items}"  SelectedItem="{Binding SelectedItem, Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="35"/>
         <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding tbl_status}" TextAlignment="Center"  Padding="10 10" FontSize="32" FontWeight="DemiBold"  Background="#f1c40f" />
         <StackPanel Grid.Row="0" Grid.Column="2">
             <Label Content=" Online Voltage" Style="{StaticResource lbl_normal}"/>
@@ -57,8 +57,13 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
+
+
+            <Button Grid.Column="3" Content="Start" Command="{Binding TestStart}"/>
+
+
             <Label Content="Lamp Names" Grid.Row="0" Style="{StaticResource lbl_normal}"/>
-            <Label Content="Lamp1" Grid.Row="1" Style="{StaticResource lbl_normal}"/>
+            <Label Content="{Binding lamp1.name,Mode=TwoWay}" Grid.Row="1" Style="{StaticResource lbl_normal}"/>
             <Label Content="Lamp2" Grid.Row="2" Style="{StaticResource lbl_normal}"/>
             <Label Content="Lamp3" Grid.Row="3" Style="{StaticResource lbl_normal}"/>
             <Label Content="Lamp4" Grid.Row="4" Style="{StaticResource lbl_normal}"/>
@@ -69,7 +74,7 @@
                     <Label  Content="Current" Style="{StaticResource lbl_normal}" Width="auto" Margin="10 0"  />
             </StackPanel>
 
-            <test_area:TestBlock Grid.Row="1" Grid.Column="1" Text1="min voltge" />
+            <test_area:TestBlock Grid.Row="1" Grid.Column="1" Text1="{Binding lamp1.min_voltage[0]}" />
             <test_area:TestBlock Grid.Row="1" Grid.Column="2" Text1="12V-15V" Text2="10A" Text3="11volt" Text4="2A"/>
             <test_area:TestBlock Grid.Row="1" Grid.Column="3" Text1="12V-15V" Text2="10A" Text3="11volt" Text4="2A"/>
 
@@ -88,7 +93,7 @@
             <test_area:TestBlock Grid.Row="5" Grid.Column="1" Text1="12V-15V" Text2="10A" Text3="11volt" Text4="2A"/>
             <test_area:TestBlock Grid.Row="5" Grid.Column="2" Text1="12V-15V" Text2="10A" Text3="11volt" Text4="2A"/>
             <test_area:TestBlock Grid.Row="5" Grid.Column="3" Text1="12V-15V" Text2="10A" Text3="11volt" Text4="2A"/>
-            <Button Grid.Column="3" Grid.Row="0" Command="{Binding LoadTest}" />
+            <!--<Button Grid.Column="3" Grid.Row="0" Command="{Binding LoadTest}" />-->
 
         </Grid>
         <TextBlock Text="{Binding tbl_online_details, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="1" Grid.Column="3" Background="#2f3640" Foreground="Green"/>
