@@ -8,35 +8,70 @@
 
              xmlns:local="clr-namespace:Navbar.View.CustomControles"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="100" d:DesignWidth="300">
     <UserControl.Resources>
         <Style TargetType="TextBlock">
-            <Setter  Property="Height" Value="35" />
+            <Setter  Property="Height" Value="23" />
             <Setter  Property="HorizontalAlignment" Value="Stretch" />
-            <Setter  Property="Background" Value="GreenYellow" />
-            <Setter  Property="Margin" Value="8 5" />
-            <Setter  Property="FontSize" Value="18" />
-            <Setter  Property="FontWeight" Value="Bold" />
+            <Setter  Property="Background" Value="#FF9800" />
+            <Setter  Property="Margin" Value="1 1" />
+            <Setter  Property="FontSize" Value="12" />
+            <Setter  Property="Foreground" Value="White" />
+        </Style>
+        <Style TargetType="Label">
+            <Setter  Property="Height" Value="23" />
+            <Setter  Property="HorizontalAlignment" Value="Stretch" />
+            <Setter  Property="Background" Value="Crimson" />
+            <Setter  Property="Foreground" Value="White" />
+
+            <Setter  Property="Margin" Value="1 1" />
+            <Setter  Property="Padding" Value="0 0" />
+            <Setter  Property="FontSize" Value="12" />
+     
         </Style>
     </UserControl.Resources>
 
-    <Grid Background="#ff7675">
+    <Border BorderBrush="#11009E" BorderThickness="3" CornerRadius="3">
+
+
+
+
+        <Grid Background="#003C43">
 
         <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
 
-            </Grid.ColumnDefinitions>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="{Binding ElementName=my_cc, Path=Text1}" Grid.Column="0" Grid.Row="0" />
-        <TextBlock Text="{Binding ElementName=my_cc, Path=Text2}" Grid.Column="1" Grid.Row="0"/>
-        <TextBlock Text="{Binding ElementName=my_cc, Path=Text3}" Grid.Column="0" Grid.Row="1"/>
-        <TextBlock Text="{Binding ElementName=my_cc, Path=Text4}" Grid.Column="1" Grid.Row="1"/>
-        
+
+        <Label Content="Min Voltage" Grid.Row="0" Grid.Column="0"/>
+        <Label Content="Max Voltage" Grid.Row="0" Grid.Column="1"/>
+        <Label Content="Min Current" Grid.Row="0" Grid.Column="2"/>
+        <Label Content="Max Current" Grid.Row="0" Grid.Column="3"/>
+        <Label Content="Test Voltage" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"/>
+        <Label Content="Test Current" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2"/>
+
+
+
+        <TextBlock Text="{Binding ElementName=my_cc, Path=Text1}" Grid.Column="0" Grid.Row="1" />
+        <TextBlock Text="{Binding ElementName=my_cc, Path=Text2}" Grid.Column="1" Grid.Row="1"/>
+        <TextBlock Text="{Binding ElementName=my_cc, Path=Text3}" Grid.Column="2" Grid.Row="1"/>
+        <TextBlock Text="{Binding ElementName=my_cc, Path=Text4}" Grid.Column="3" Grid.Row="1"/>
+        <TextBlock Text="{Binding ElementName=my_cc, Path=Text5}" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" />
+        <TextBlock Text="{Binding ElementName=my_cc, Path=Text6}" Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2"/>
+
+
 
     </Grid>
+
+    </Border>
 </UserControl>

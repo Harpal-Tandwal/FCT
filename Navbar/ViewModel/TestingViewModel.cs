@@ -38,14 +38,18 @@ namespace Navbar.ViewModel
 
      
 
-
+       
 
         public TestingViewModel()
         {
             LoadProgramNames(folderPath);
 
             testingmodel = new TestingModel();
-            lamp1= new Lamps();
+            lamp1 = new Lamps();
+            lamp2 = new Lamps();
+            lamp3 = new Lamps();
+            lamp4 = new Lamps();
+            lamp5 = new Lamps();
 
             //lamp1= new Lamps();
             //lamp1 = testingmodel.lamps[1];
@@ -140,21 +144,86 @@ namespace Navbar.ViewModel
                 }
             }
         }
-        private Lamps _lamps;
+        private Lamps _lamp1;
         public Lamps lamp1
         {
-            get { return _lamps; }
+            get { return _lamp1; }
             set
             {
-                if (_lamps != value)
+                if (_lamp1 != value)
                 {
-                    _lamps = value;
+                    _lamp1 = value;
                     OnPropertyChanged(nameof(lamp1));
 
                    
                 }
             }
         }
+        private Lamps _lamp2;
+        public Lamps lamp2
+        {
+            get { return _lamp2; }
+            set
+            {
+                if (_lamp2 != value)
+                {
+                    _lamp2 = value;
+                    OnPropertyChanged(nameof(lamp2));
+
+
+                }
+            }
+        }
+
+        private Lamps _lamp3;
+        public Lamps lamp3
+        {
+            get { return _lamp3; }
+            set
+            {
+                if (_lamp3 != value)
+                {
+                    _lamp3 = value;
+                    OnPropertyChanged(nameof(lamp3));
+
+
+                }
+            }
+        }
+
+        private Lamps _lamp4;
+        public Lamps lamp4
+        {
+            get { return _lamp4; }
+            set
+            {
+                if (_lamp4 != value)
+                {
+                    _lamp4 = value;
+                    OnPropertyChanged(nameof(lamp4));
+
+
+                }
+            }
+        }
+
+        private Lamps _lamp5;
+        public Lamps lamp5
+        {
+            get { return _lamp5; }
+            set
+            {
+                if (_lamp5 != value)
+                {
+                    _lamp5 = value;
+                    OnPropertyChanged(nameof(lamp5));
+
+
+                }
+            }
+        }
+
+
 
         public void LoadProgramParameters()
         {
@@ -168,6 +237,10 @@ namespace Navbar.ViewModel
                // MessageBox.Show(json);
                 testingmodel = JsonConvert.DeserializeObject<TestingModel>(json);
                 lamp1.DeepCopyFrom(testingmodel.lamps[0]);
+                lamp2.DeepCopyFrom(testingmodel.lamps[1]);
+                lamp3.DeepCopyFrom(testingmodel.lamps[2]);
+                lamp4.DeepCopyFrom(testingmodel.lamps[3]);
+                lamp5.DeepCopyFrom(testingmodel.lamps[4]);
                 string l1 = JsonConvert.SerializeObject(lamp1);
                 //lamp2 = testingmodel.lamps[1];
                 //lamp3 = testingmodel.lamps[2];

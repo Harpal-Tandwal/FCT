@@ -40,7 +40,7 @@
         </StackPanel>
 
 
-        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Background="green" ShowGridLines="True">
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Background="#ECB159" ShowGridLines="False">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -64,36 +64,36 @@
 
             <Label Content="Lamp Names" Grid.Row="0" Style="{StaticResource lbl_normal}"/>
             <Label Content="{Binding lamp1.name,Mode=TwoWay}" Grid.Row="1" Style="{StaticResource lbl_normal}"/>
-            <Label Content="Lamp2" Grid.Row="2" Style="{StaticResource lbl_normal}"/>
-            <Label Content="Lamp3" Grid.Row="3" Style="{StaticResource lbl_normal}"/>
-            <Label Content="Lamp4" Grid.Row="4" Style="{StaticResource lbl_normal}"/>
-            <Label Content="Lamp5" Grid.Row="5" Style="{StaticResource lbl_normal}"/>
+            <Label Content="{Binding lamp2.name,Mode=TwoWay}" Grid.Row="2" Style="{StaticResource lbl_normal}"/>
+            <Label Content="{Binding lamp3.name,Mode=TwoWay}" Grid.Row="3" Style="{StaticResource lbl_normal}"/>
+            <Label Content="{Binding lamp4.name,Mode=TwoWay}" Grid.Row="4" Style="{StaticResource lbl_normal}"/>
+            <Label Content="{Binding lamp5.name,Mode=TwoWay}" Grid.Row="5" Style="{StaticResource lbl_normal}"/>
 
                 <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
                 <Label  Content="voltge" Style="{StaticResource lbl_normal}" Width="auto" Margin="10 0"/>
-                    <Label  Content="Current" Style="{StaticResource lbl_normal}" Width="auto" Margin="10 0"  />
+                <Label  Content="Current" Style="{StaticResource lbl_normal}" Width="auto" Margin="10 0"  />
             </StackPanel>
 
-            <test_area:TestBlock Grid.Row="1" Grid.Column="1" Text1="{Binding lamp1.min_voltage[0]}" />
-            <test_area:TestBlock Grid.Row="1" Grid.Column="2" Text1="12V-15V" Text2="10A" Text3="11volt" Text4="2A"/>
-            <test_area:TestBlock Grid.Row="1" Grid.Column="3" Text1="12V-15V" Text2="10A" Text3="11volt" Text4="2A"/>
+            <test_area:TestBlock Grid.Row="1" Grid.Column="1" Text1="{Binding lamp1.min_voltage[0]}" Text2="{Binding lamp1.max_voltage[0]}" Text3="{Binding lamp1.min_current[0]}" Text4="{Binding lamp1.max_current[0]}" Text5="{Binding lamp1.test_voltage[0]}" Text6="{Binding lamp1.min_current[0]}" />
+            <test_area:TestBlock Grid.Row="1" Grid.Column="2" Text1="{Binding lamp1.min_voltage[1]}" Text2="{Binding lamp1.max_voltage[1]}" Text3="{Binding lamp1.min_current[1]}" Text4="{Binding lamp1.max_current[1]}" Text5="{Binding lamp1.test_voltage[1]}" Text6="{Binding lamp1.min_current[1]}" />
+            <test_area:TestBlock Grid.Row="1" Grid.Column="3" Text1="{Binding lamp1.min_voltage[2]}" Text2="{Binding lamp1.max_voltage[2]}" Text3="{Binding lamp1.min_current[2]}" Text4="{Binding lamp1.max_current[2]}" Text5="{Binding lamp1.test_voltage[2]}" Text6="{Binding lamp1.min_current[2]}" />
 
-            <test_area:TestBlock Grid.Row="2" Grid.Column="1" Text1="test 1" Text2="10A" Text3="11volt" Text4="2A"/>
-            <test_area:TestBlock Grid.Row="2" Grid.Column="2" Text1="12V-15V" Text2="10A" Text3="11volt" Text4="2A"/>
-            <test_area:TestBlock Grid.Row="2" Grid.Column="3" Text1="12V-15V" Text2="10A" Text3="11volt" Text4="2A"/>
+            <test_area:TestBlock Grid.Row="2" Grid.Column="1" Text1="{Binding lamp2.min_voltage[0]}" Text2="{Binding lamp2.max_voltage[0]}" Text3="{Binding lamp2.min_current[0]}" Text4="{Binding lamp2.max_current[0]}" Text5="{Binding lamp2.test_voltage[0]}" Text6="{Binding lamp2.min_current[0]}" />
+            <test_area:TestBlock Grid.Row="2" Grid.Column="2" Text1="{Binding lamp2.min_voltage[1]}" Text2="{Binding lamp2.max_voltage[1]}" Text3="{Binding lamp2.min_current[1]}" Text4="{Binding lamp2.max_current[1]}" Text5="{Binding lamp2.test_voltage[1]}" Text6="{Binding lamp2.min_current[1]}" />
+            <test_area:TestBlock Grid.Row="2" Grid.Column="3" Text1="{Binding lamp2.min_voltage[2]}" Text2="{Binding lamp2.max_voltage[2]}" Text3="{Binding lamp2.min_current[2]}" Text4="{Binding lamp2.max_current[2]}" Text5="{Binding lamp2.test_voltage[2]}" Text6="{Binding lamp2.min_current[2]}" />
 
-            <test_area:TestBlock Grid.Row="3" Grid.Column="1" Text1="12V-15V" Text2="10A" Text3="11volt" Text4="2A"/>
-            <test_area:TestBlock Grid.Row="3" Grid.Column="2" Text1="12V-15V" Text2="10A" Text3="11volt" Text4="2A"/>
-            <test_area:TestBlock Grid.Row="3" Grid.Column="3" Text1="12V-15V" Text2="10A" Text3="11volt" Text4="2A"/>
-      
-            <test_area:TestBlock Grid.Row="4" Grid.Column="1" Text1="12V-15V" Text2="10A" Text3="11volt" Text4="2A"/>
-            <test_area:TestBlock Grid.Row="4" Grid.Column="2" Text1="12V-15V" Text2="10A" Text3="11volt" Text4="2A"/>
-            <test_area:TestBlock Grid.Row="4" Grid.Column="3" Text1="12V-15V" Text2="10A" Text3="11volt" Text4="2A"/>
+            <test_area:TestBlock Grid.Row="3" Grid.Column="1" Text1="{Binding lamp3.min_voltage[0]}" Text2="{Binding lamp3.max_voltage[0]}" Text3="{Binding lamp3.min_current[0]}" Text4="{Binding lamp3.max_current[0]}" Text5="{Binding lamp3.test_voltage[0]}" Text6="{Binding lamp3.min_current[0]}" />
+            <test_area:TestBlock Grid.Row="3" Grid.Column="2" Text1="{Binding lamp3.min_voltage[1]}" Text2="{Binding lamp3.max_voltage[1]}" Text3="{Binding lamp3.min_current[1]}" Text4="{Binding lamp3.max_current[1]}" Text5="{Binding lamp3.test_voltage[1]}" Text6="{Binding lamp3.min_current[1]}" />
+            <test_area:TestBlock Grid.Row="3" Grid.Column="3" Text1="{Binding lamp3.min_voltage[2]}" Text2="{Binding lamp3.max_voltage[2]}" Text3="{Binding lamp3.min_current[2]}" Text4="{Binding lamp3.max_current[2]}" Text5="{Binding lamp3.test_voltage[2]}" Text6="{Binding lamp3.min_current[2]}" />
 
-            <test_area:TestBlock Grid.Row="5" Grid.Column="1" Text1="12V-15V" Text2="10A" Text3="11volt" Text4="2A"/>
-            <test_area:TestBlock Grid.Row="5" Grid.Column="2" Text1="12V-15V" Text2="10A" Text3="11volt" Text4="2A"/>
-            <test_area:TestBlock Grid.Row="5" Grid.Column="3" Text1="12V-15V" Text2="10A" Text3="11volt" Text4="2A"/>
-            <!--<Button Grid.Column="3" Grid.Row="0" Command="{Binding LoadTest}" />-->
+            <test_area:TestBlock Grid.Row="4" Grid.Column="1" Text1="{Binding lamp4.min_voltage[0]}" Text2="{Binding lamp4.max_voltage[0]}" Text3="{Binding lamp4.min_current[0]}" Text4="{Binding lamp4.max_current[0]}" Text5="{Binding lamp4.test_voltage[0]}" Text6="{Binding lamp4.min_current[0]}" />
+            <test_area:TestBlock Grid.Row="4" Grid.Column="2" Text1="{Binding lamp4.min_voltage[1]}" Text2="{Binding lamp4.max_voltage[1]}" Text3="{Binding lamp4.min_current[1]}" Text4="{Binding lamp4.max_current[1]}" Text5="{Binding lamp4.test_voltage[1]}" Text6="{Binding lamp4.min_current[1]}" />
+            <test_area:TestBlock Grid.Row="4" Grid.Column="3" Text1="{Binding lamp4.min_voltage[2]}" Text2="{Binding lamp4.max_voltage[2]}" Text3="{Binding lamp4.min_current[2]}" Text4="{Binding lamp4.max_current[2]}" Text5="{Binding lamp4.test_voltage[2]}" Text6="{Binding lamp4.min_current[2]}" />
+
+            <test_area:TestBlock Grid.Row="5" Grid.Column="1" Text1="{Binding lamp5.min_voltage[0]}" Text2="{Binding lamp5.max_voltage[0]}" Text3="{Binding lamp5.min_current[0]}" Text4="{Binding lamp5.max_current[0]}" Text5="{Binding lamp5.test_voltage[0]}" Text6="{Binding lamp5.min_current[0]}" />
+            <test_area:TestBlock Grid.Row="5" Grid.Column="2" Text1="{Binding lamp5.min_voltage[1]}" Text2="{Binding lamp5.max_voltage[1]}" Text3="{Binding lamp5.min_current[1]}" Text4="{Binding lamp5.max_current[1]}" Text5="{Binding lamp5.test_voltage[1]}" Text6="{Binding lamp5.min_current[1]}" />
+            <test_area:TestBlock Grid.Row="5" Grid.Column="3" Text1="{Binding lamp5.min_voltage[2]}" Text2="{Binding lamp5.max_voltage[2]}" Text3="{Binding lamp5.min_current[2]}" Text4="{Binding lamp5.max_current[2]}" Text5="{Binding lamp5.test_voltage[2]}" Text6="{Binding lamp5.min_current[2]}" />
+           <!--<Button Grid.Column="3" Grid.Row="0" Command="{Binding LoadTest}" />-->
 
         </Grid>
         <TextBlock Text="{Binding tbl_online_details, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="1" Grid.Column="3" Background="#2f3640" Foreground="Green"/>

@@ -16,7 +16,7 @@ using Newtonsoft.Json;
 
 namespace Navbar.ViewModel
 {
-    public class ModelSettingViewModel
+    public class ModelSettingViewModel:BaseClass
     {
         //************* Initialization Section || Constructor *******************************************
 
@@ -30,9 +30,10 @@ namespace Navbar.ViewModel
             lamp4 = new Lamps();
             lamp5 = new Lamps();
 
-           
+            LoadProgramNames(program_folder_path);
 
-            
+
+
 
         }
         //************* Variable Declaration Section*******************************************
@@ -40,6 +41,7 @@ namespace Navbar.ViewModel
         public int online_current = 0;
 
         public static string program_folder_path = @"C:\HpTech";
+
     
 
         public  TestingModel testingmodel { get; set; }
@@ -70,42 +72,42 @@ namespace Navbar.ViewModel
 
         public void _LampOn(object parameter)
         {
-            var data = parameter as object[];
-            //MessageBox.Show(data[0].ToString());
-            //  MessageBox.Show(testingmodel.barcode[0]);
-            MessageBox.Show(lamp1.test_voltage[0].ToString());
-            // MessageBox.Show($"max voltage value: {testingmodel.lamps[0].voltage.max_voltage[0]}");
+            //var data = parameter as object[];
+            ////MessageBox.Show(data[0].ToString());
+            ////  MessageBox.Show(testingmodel.barcode[0]);
+            //MessageBox.Show(lamp1.test_voltage[0].ToString());
+            //// MessageBox.Show($"max voltage value: {testingmodel.lamps[0].voltage.max_voltage[0]}");
 
 
-            //*************
-            try
-            {     string folderPath = @"C:\HpTech";
-                  string ext = ".dat";
-                string program_path = Path.Combine(folderPath, "Z101"+ ext);
-                string json = File.ReadAllText(program_path);
-                // MessageBox.Show(json);
-                testingmodel = JsonConvert.DeserializeObject<TestingModel>(json);
-                lamp1 = testingmodel.lamps[0];
-                string l1 = JsonConvert.SerializeObject(lamp1);
-                //lamp2 = testingmodel.lamps[1];
-                //lamp3 = testingmodel.lamps[2];
-                //lamp4 = testingmodel.lamps[3];
-                //lamp5 = testingmodel.lamps[4];
-                MessageBox.Show(l1);
+            ////*************
+            //try
+            //{     string folderPath = @"C:\HpTech";
+            //      string ext = ".dat";
+            //    string program_path = Path.Combine(folderPath, "Z101"+ ext);
+            //    string json = File.ReadAllText(program_path);
+            //    // MessageBox.Show(json);
+            //    testingmodel = JsonConvert.DeserializeObject<TestingModel>(json);
+            //    lamp1 = testingmodel.lamps[0];
+            //    string l1 = JsonConvert.SerializeObject(lamp1);
+            //    //lamp2 = testingmodel.lamps[1];
+            //    //lamp3 = testingmodel.lamps[2];
+            //    //lamp4 = testingmodel.lamps[3];
+            //    //lamp5 = testingmodel.lamps[4];
+            //    MessageBox.Show(l1);
 
-                // MessageBox.Show($"volt: {lamp1.name}");
+            //    // MessageBox.Show($"volt: {lamp1.name}");
 
-                MessageBox.Show("tv 0" + lamp1.test_voltage[0].ToString());
-
-
+            //    MessageBox.Show("tv 0" + lamp1.test_voltage[0].ToString());
 
 
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
 
         }
 
@@ -136,6 +138,50 @@ namespace Navbar.ViewModel
 
         }
 
+        //******************Loading Existing Programs*****************************************
+        public string[] _Cbox_Pname_Items = new string[50];
+
+        public string[] Cbox_Pname_Items
+        {
+            get { return _Cbox_Pname_Items; }
+            set
+            {
+                if (_Cbox_Pname_Items != value)
+                {
+                    _Cbox_Pname_Items = value;
+                    OnPropertyChanged(nameof(Cbox_Pname_Items));
+                }
+            }
+        }
+
+
+        public void LoadProgramNames(string path)
+        {
+            try
+            {
+                if (Directory.Exists(path))
+                {
+                    string[] files = Directory.GetFiles(path);
+                    int i = 0;
+                    foreach (string file in files)
+                    {
+                        Cbox_Pname_Items[i++] = Path.GetFileNameWithoutExtension(file);
+                    }
+
+                }
+                else
+                {
+                    Directory.CreateDirectory(path);
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{ex.Message}", "Error While Program Loading");
+            }
+        }
+
 
 
     }
@@ -144,7 +190,7 @@ namespace Navbar.ViewModel
     //************* Class Declaration Section*******************************************
 
 
-   
+
 
     public class BaseClass : INotifyPropertyChanged
     {
