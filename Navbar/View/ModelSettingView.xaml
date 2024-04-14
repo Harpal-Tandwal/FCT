@@ -30,7 +30,7 @@
              <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <ComboBox ItemsSource="{Binding _Cbox_Pname_Items}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" Grid.Row="0" Grid.Column="0" Height="35"  Text="Select Model"/>
+        <ComboBox ItemsSource="{Binding Cbox_Pname_Items}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" Grid.Row="0" Grid.Column="0" Height="35"  Text="Select Model"/>
         <TextBox  Grid.Row="0" Grid.Column="1" x:Name="tbx_model_name"  Tag="Enter Model Name" Text="{Binding testingmodel.model_name}" Style="{StaticResource PlaceholderTextBoxStyle}" Height="35" FontSize="24" Margin="10 2"/>
         <Button Grid.Row="0" Grid.Column="2" Height="35"  Content="Save" Command="{Binding SaveProgram}" />
         <StackPanel Grid.Row="1">

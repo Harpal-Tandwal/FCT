@@ -44,12 +44,12 @@ namespace Navbar.ViewModel
 
     
 
-        public  TestingModel testingmodel { get; set; }
-        public Lamps lamp1 { get; set; }
-        public Lamps lamp2{ get; set; }
-        public Lamps lamp3 { get; set; }
-        public Lamps lamp4 { get; set; }
-        public Lamps lamp5 { get; set; }
+        //public  TestingModel testingmodel { get; set; }
+        //public Lamps lamp1 { get; set; }
+        //public Lamps lamp2{ get; set; }
+        //public Lamps lamp3 { get; set; }
+        //public Lamps lamp4 { get; set; }
+        //public Lamps lamp5 { get; set; }
         public  string[] Barcode { get; set; }= new string[4];
         public int[] validation { get; set; } = new int[4];
 
@@ -184,9 +184,165 @@ namespace Navbar.ViewModel
 
 
 
+        //*******************   loading existing program parameters************************
+       
+        private TestingModel _testingmodel;
+        public TestingModel testingmodel
+        {
+            get { return _testingmodel; }
+            set
+            {
+                if (_testingmodel != value)
+                {
+                    _testingmodel = value;
+                    OnPropertyChanged(nameof(testingmodel));
+                }
+            }
+        }
+        public RelayCommand<object> LoadParameters => new(execute => LoadProgramParameters());
+
+        private string _selectedItem;
+        public string SelectedItem
+        {
+            get { return _selectedItem; }
+            set
+            {
+                if (_selectedItem != value)
+                {
+                    _selectedItem = value;
+                    OnPropertyChanged(nameof(SelectedItem));
+
+                    // Execute command when item is selected
+                    LoadParameters.Execute(value);
+                }
+            }
+        }
+        private Lamps _lamp1;
+        public Lamps lamp1
+        {
+            get { return _lamp1; }
+            set
+            {
+                if (_lamp1 != value)
+                {
+                    _lamp1 = value;
+                    OnPropertyChanged(nameof(lamp1));
+
+
+                }
+            }
+        }
+        private Lamps _lamp2;
+        public Lamps lamp2
+        {
+            get { return _lamp2; }
+            set
+            {
+                if (_lamp2 != value)
+                {
+                    _lamp2 = value;
+                    OnPropertyChanged(nameof(lamp2));
+
+
+                }
+            }
+        }
+
+        private Lamps _lamp3;
+        public Lamps lamp3
+        {
+            get { return _lamp3; }
+            set
+            {
+                if (_lamp3 != value)
+                {
+                    _lamp3 = value;
+                    OnPropertyChanged(nameof(lamp3));
+
+
+                }
+            }
+        }
+
+        private Lamps _lamp4;
+        public Lamps lamp4
+        {
+            get { return _lamp4; }
+            set
+            {
+                if (_lamp4 != value)
+                {
+                    _lamp4 = value;
+                    OnPropertyChanged(nameof(lamp4));
+
+
+                }
+            }
+        }
+
+        private Lamps _lamp5;
+        public Lamps lamp5
+        {
+            get { return _lamp5; }
+            set
+            {
+                if (_lamp5 != value)
+                {
+                    _lamp5 = value;
+                    OnPropertyChanged(nameof(lamp5));
+
+
+                }
+            }
+        }
+
+
+
+        public void LoadProgramParameters()
+        {
+            string ext = ".dat";
+            string program_path = Path.Combine(program_folder_path, SelectedItem + ext);
+
+            //MessageBox.Show($"{program_path} paramereter loading called");
+            try
+            {
+                string json = File.ReadAllText(program_path);
+                // MessageBox.Show(json);
+                testingmodel = JsonConvert.DeserializeObject<TestingModel>(json);
+                lamp1.DeepCopyFrom(testingmodel.lamps[0]);
+                lamp2.DeepCopyFrom(testingmodel.lamps[1]);
+                lamp3.DeepCopyFrom(testingmodel.lamps[2]);
+                lamp4.DeepCopyFrom(testingmodel.lamps[3]);
+                lamp5.DeepCopyFrom(testingmodel.lamps[4]);
+                string l1 = JsonConvert.SerializeObject(lamp1);
+                //lamp2 = testingmodel.lamps[1];
+                //lamp3 = testingmodel.lamps[2];
+                //lamp4 = testingmodel.lamps[3];
+                //lamp5 = testingmodel.lamps[4];
+                MessageBox.Show(l1);
+
+
+
+                MessageBox.Show("tv 0" + lamp1.min_voltage[0].ToString());
+
+
+                //MessageBox.Show("tv 0" + lamp1.test_voltage[1].ToString());
+
+                //MessageBox.Show("tv 0" + lamp1.test_voltage[2].ToString());
+
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+
+
     }
-
-
     //************* Class Declaration Section*******************************************
 
 
